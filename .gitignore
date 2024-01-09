@@ -1,0 +1,12 @@
+.DS_Store
+*.swp
+*.log
+
+.env
+config.py
+secrets/
+
+node_modules/
+*.pyc
+build/
+dist/

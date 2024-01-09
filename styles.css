@@ -1,0 +1,171 @@
+
+/* Site Title Font */
+@font-face {
+    font-family: 'site_title'; 
+    src: url('chomsky/Chomsky.otf') format('opentype');
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+.title {
+    font-family: 'site_title', sans-serif;;
+    font-size: 45px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.tabs {
+    list-style: none;
+    padding: 0;
+}
+
+.tabs li {
+    margin-bottom: 10px;
+}
+
+.tabs li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.main {
+    display: flex;
+    flex: 1;
+    background-color: #fff;
+}
+
+
+.search-bar {
+    margin-top: 20px; /* Adjust margin as needed */
+}
+
+.article-pane,
+.chat-pane {
+    flex: 1;
+    padding: 20px;
+}
+
+.chat-input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 8px;
+    margin-right: 10px;
+}
+
+/* Ensure the textarea fills the available space */
+.chat-input textarea {
+    flex: 1;
+    padding: 8px;
+    resize: none; /* Disable resizing of the textarea */
+    border: 1px solid #ccc; /* Add a border for visual clarity */
+    min-height: 40px; /* Set a minimum height for the textarea */
+    max-height: 200px; /* Set a maximum height if needed */
+    overflow-y: auto; /* Enable vertical scrolling if the content exceeds the height */
+}
+
+/* Chat Input Button */
+.chat-input button {
+    padding: 8px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+/* Chat Display */
+.chat-display {
+    display: flex; /* Set chat display as a flex container */
+    flex-direction: column; /* Stack messages vertically */
+}
+
+/* User Messages */
+.user-message {
+    background-color: #007bff; /* User message bubble color */
+    color: white;
+    padding: 8px 12px;
+    border-radius: 15px;
+    margin: 5px 0;
+    text-align: right; /* Right-align text within user message bubble */
+    align-self: flex-end; /* Align user message bubble to the end of the flex container */
+    display: inline-block; /* Set user message as an inline-block element */
+    clear: both; /* Ensure the bubbles appear on separate lines */
+    margin-bottom: 5px; /* Add margin to separate messages */
+}
+
+/* Assistant Messages */
+.assistant-message {
+    background-color: #28a745; /* Assistant message bubble color */
+    color: white;
+    padding: 8px 12px;
+    border-radius: 15px;
+    margin: 5px 0;
+    text-align: left; /* Left-align text within assistant message bubble */
+    align-self: flex-start; /* Align assistant message bubble to the start of the flex container */
+    display: inline-block; /* Set assistant message as an inline-block element */
+    clear: both; /* Ensure the bubbles appear on separate lines */
+    margin-bottom: 5px; /* Add margin to separate messages */
+}
+
+
+/* My attempt at stylizing the article */
+.article {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.articletitle {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.articledate {
+    color: #555;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.articlecontent {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.articleurl {
+    display: block;
+    margin-bottom: 15px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.articleurl:hover {
+    text-decoration: underline;
+}
+
+.articleimage {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 15px;
+}

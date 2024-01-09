@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your World</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h1 class="title">Your World</h1>
+            <ul class="tabs">
+                <li><a href="#reader">Reader</a></li>
+                <li><a href="#map">Map</a></li>
+                <li><a href="#forums">Forums</a></li>
+                <li><a href="#debrief">Debrief</a></li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="article-pane">
+                <!-- Article reader/navigator content -->
+                <h2>Navigation</h2>
+                <!-- Search bar and button for articles -->
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search...">
+                    <button onclick="searchArticles()">Search</button>
+                </div>
+                <div class="article">
+                    <h2 class="articletitle" id="articleTitle">
+                        <!-- Article title will appear here -->
+                    </h2>
+                    <p class="articledate" id="articleDate">
+                        <!-- Article date will appear here -->
+                    </p>
+                    <div class="article-content" id="articleContent">
+                        <!-- Article content will appear here -->
+                    </div>
+                    <div class="articleurl" id="articleURL">
+                        <!-- Article content will appear here -->
+                    </div>
+                    <!-- <a id="articleURL" href="#">
+                    </a> -->
+                    <img class="articleimage" id="articleImage" src="" alt="">
+                </div>
+
+            </div>
+            <div class="chat-pane">
+                <h2>Assistant</h2>
+                <!-- Chat display area -->
+                <div class="chat-display" id="chatDisplay">
+                    <!-- Chat messages will appear here -->
+                </div>
+                <!-- Chat input field and submit button -->
+                <div class="chat-input">
+                    <textarea id="userInput" placeholder="Type your message..."></textarea>
+                    <button onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
