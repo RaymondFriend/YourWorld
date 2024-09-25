@@ -1,6 +1,6 @@
 # Your World
 
-
+<--
 ## File Structure
 ```news_scraper/
 │
@@ -192,3 +192,4 @@ articles = get_news_articles(api_key, 'technology')
 for article in articles:
     print(article['title'], "-", article['url'])
 ```
+-->
