@@ -1,4 +1,4 @@
-# Your World 🌍
+# Your World
 
 
 ## File Structure

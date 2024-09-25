@@ -1,3 +1,5 @@
+var topic = ""
+
 // Checking the server is handling OPTIONS requests
 fetch('http://127.0.0.1:5000/', {
     method: 'OPTIONS',
@@ -26,10 +28,17 @@ function sendMessage() {
         document.getElementById('userInput').value = ''; // Clear the input field after sending the message
     }
 
-    // Simulate assistant's response (replace with actual assistant logic)
-    const assistantResponse = 'This is an assistant response.';
-    addMessageToChat(assistantResponse, 'assistant');
-    
+    // Request assistant's response
+    const assistantResponse = assistant_respond(userInput)
+    assistant_respond(userInput)
+    .then(output => {
+        console.log("Received output:", output);
+        addMessageToChat(output, 'assistant');
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        addMessageToChat("HTML error: " + error, 'assistant');
+    });
 }
 
 // Function to add messages to the chat log
@@ -70,6 +79,7 @@ document.getElementById('userInput').addEventListener('keydown', function (event
     }
 });
 
+// converts the formatted string default from newsapi to more readable
 function formatDateString(dateString) {
     try {
         const date = new Date(dateString);
@@ -84,6 +94,18 @@ function formatDateString(dateString) {
 // Function to perform the search and fetch articles
 function searchArticles() {
     const searchQuery = document.getElementById('searchInput').value; // Get the search query from an input field
+    topic = searchQuery // this updates a global variable so that the AI might also have access to the current topic
+
+    /* Now we may process the searchQuery
+        I'm thinking of having an AI basically fix any typos by asking it nicely.
+
+        Here are the only restrictions on the query (q) when we do an everything search:
+            Surround phrases with quotes (") for exact match.
+            Prepend words or phrases that must appear with a + symbol. Eg: +bitcoin
+            Prepend words that must not appear with a - symbol. Eg: -bitcoin
+            Alternatively you can use the AND / OR / NOT keywords, and optionally group these with parenthesis. Eg: crypto AND (ethereum OR litecoin) NOT bitcoin.
+            The complete value for q must be URL-encoded. Max length: 500 chars.
+    */
 
     // Make a POST request to your Flask API endpoint
     fetch('http://127.0.0.1:5000/search', {
@@ -125,4 +147,35 @@ function searchArticles() {
     .catch(error => {
         console.error('Error:', error);
     });
+}
+
+// Function to perform the search and fetch articles
+function assistant_respond(input) {
+
+    /* Now we may process the input
+        1. Process the input so it's grammatically correct (that'll be a specially trained AI)
+        2. Run classification to understand what kind of request this is between ['conversational task', 'summarization task', 'translation task', 'analyzing sentiment task]
+        3. Map those options to ['conversational', 'summarization', 'translation', 'sentiment-analysis'], for which we have a model already instantiated
+        4. Depending on the task, the inputs will be processed slightly differently. But for now no worries.
+        5. Output the corresponding response as the assistant's response to be displayed up the chain.
+    */
+
+    return new Promise((resolve, reject) => {
+        fetch('http://127.0.0.1:5000/AI_response', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ input: input }),
+        })
+        .then(response => response.json()) 
+        .then(data => {
+            console.log("the output received from JSON is: " + data.output); 
+            resolve(data.output);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            reject(error);
+        });
+    })
 }
